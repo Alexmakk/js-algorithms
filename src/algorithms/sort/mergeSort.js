@@ -3,28 +3,32 @@
 const merge = (firstArr, secondArr) => {
     const arrSort = [];
     let i = 0;
-    let j = 0;
+    let j = 0;      
 
-    while ( i < firstArr.length && j < secondArr.length) {
-        // console.log(i, j)
-        arrSort.push(
-            (firstArr[i] < secondArr[j]) ? firstArr[i++] : secondArr[j++]
-        );
-        console.log('firstArr: ', firstArr[i++])         
-        console.log('secondArr: ', secondArr[i++])         
-    }
-    
+   while ( i < firstArr.length && j < secondArr.length) {        
+       
+        if (firstArr[i] < secondArr[j]) {
+            arrSort.push(firstArr[i++]);            
+        } else {
+            arrSort.push(secondArr[j++]);
+        }            
+        // можно использовать тернарник
+        // arrSort.push(
+        //     (firstArr[i] < secondArr[j]) ? firstArr[i++] : secondArr[j++]
+        // );   
+    }    
     return [...arrSort, ...firstArr.slice(i), ...secondArr.slice(j)]
 }
 
-
 const mergeSort = (arr) => {
-    if (arr.lenght < 2 ){
+    if (arr.length < 2 ) {
         return arr
     }
-
-    console.log(arr)
-
+    const middle = Math.floor(arr.length/2);
+    const arrLeft = arr.slice(0, middle);
+    const arrRight = arr.slice(middle);
+    
+    return merge(mergeSort(arrLeft), mergeSort(arrRight));
 }
 
-module.exports = merge;
+module.exports = mergeSort;
