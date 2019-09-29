@@ -3,9 +3,9 @@
  const binarySearch = (sortArr, item) => {
     let first = 0;
     let last = sortArr.length - 1;
-    let middle = 0;
+    
     while (first <= last) {
-        middle = Math.floor((first+last)/2)
+        const middle = Math.floor((first+last)/2)
         if (item === sortArr[middle]) {
             return middle;
         } else if (item < sortArr[middle]) {
